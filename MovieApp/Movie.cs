@@ -1,4 +1,6 @@
-﻿using MovieAppStart.Models;
+﻿using MovieAppStart.Configurations;
+using MovieAppStart.Factory;
+using MovieAppStart.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,9 @@ using System.Threading.Tasks;
 
 namespace MovieAppStart
 {
-    public class Movie
+    public class Movie  
     {
-        public const     int CHILDRENS = 2;
-        public const int REGULAR = 0;
-        public const int NEW_RELEASE = 1;
+
         private String _title;
         private Price _price;
 
@@ -24,22 +24,9 @@ namespace MovieAppStart
         {
             return _price.GetPrice();
         }
-        private void setPriceCode(int arg)
+        private void setPriceCode(int movieType)
         {
-            switch (arg)
-            {
-                case REGULAR:
-                    _price = new RegularPrice();
-                    break;
-                case NEW_RELEASE:
-                    _price = new NewReleasePrice();
-                    break;
-                case CHILDRENS:
-                    _price = new ChildrensPrice();
-                    break;
-                default:
-                    throw new Exception("Inccorect price code");
-            }
+            _price = PriceFactory.GetMoviePrice(movieType);
         }
         public String getTitle()
         {

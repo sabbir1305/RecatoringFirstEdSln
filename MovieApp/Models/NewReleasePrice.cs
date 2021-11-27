@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieAppStart.Configurations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace MovieAppStart.Models
     {
         public override int GetPrice()
         {
-            return Movie.NEW_RELEASE;
+            return MovieTypes.NEW_RELEASE;
         }
 
         public override double GetCharge(int daysRented)
